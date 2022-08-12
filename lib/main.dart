@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           future: _initialization,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              print("something went wrong");
+              debugPrint("something went wrong");
               Fluttertoast.showToast(msg: "something went wrong");
             }
             if (snapshot.connectionState == ConnectionState.done) {

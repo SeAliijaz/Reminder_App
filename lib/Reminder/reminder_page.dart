@@ -72,6 +72,65 @@ class _ReminderPageState extends State<ReminderPage> {
     eventTime = null;
   }
 
+  Widget _buildCancelAllButton() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.indigo[100],
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 24.0,
+        vertical: 12.0,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Cancel all the reminders',
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w500,
+              color: Colors.black87,
+            ),
+          ),
+          Icon(Icons.clear),
+        ],
+      ),
+    );
+  }
+
+  DateTimeComponents? getDateTimeComponents() {
+    if (segmentedControlGroupValue == 1) {
+      return DateTimeComponents.time;
+    } else if (segmentedControlGroupValue == 2) {
+      return DateTimeComponents.dayOfWeekAndTime;
+    }
+  }
+
+  void selectEventDate() async {
+    final today =
+        DateTime(currentDate.year, currentDate.month, currentDate.day);
+    if (segmentedControlGroupValue == 0) {
+      eventDate = await showDatePicker(
+        context: context,
+        initialDate: today,
+        firstDate: today,
+        lastDate: DateTime(currentDate.year + 10),
+      );
+      setState(() {});
+    } else if (segmentedControlGroupValue == 1) {
+      eventDate = today;
+    } else if (segmentedControlGroupValue == 2) {
+      CustomDayPicker(
+        onDaySelect: (val) {
+          debugPrint('$val: ${CustomDayPicker.weekdays[val]}');
+          eventDate = today.add(
+              Duration(days: (val - today.weekday + 1) % DateTime.daysPerWeek));
+        },
+      ).show(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,36 +138,6 @@ class _ReminderPageState extends State<ReminderPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Padding(
-          padding: EdgeInsets.only(
-            top: 25.h,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Diet',
-                style: GoogleFonts.bebasNeue(
-                    fontSize: 35.sp,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black,
-                    letterSpacing: 3),
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Text(
-                'Plan',
-                style: GoogleFonts.bebasNeue(
-                    fontSize: 35.sp,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black,
-                    letterSpacing: 3),
-              ),
-            ],
-          ),
-        ),
-        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
@@ -202,64 +231,5 @@ class _ReminderPageState extends State<ReminderPage> {
         ),
       ),
     );
-  }
-
-  Widget _buildCancelAllButton() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.indigo[100],
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: 24.0,
-        vertical: 12.0,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Cancel all the reminders',
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-              color: Colors.black87,
-            ),
-          ),
-          Icon(Icons.clear),
-        ],
-      ),
-    );
-  }
-
-  DateTimeComponents? getDateTimeComponents() {
-    if (segmentedControlGroupValue == 1) {
-      return DateTimeComponents.time;
-    } else if (segmentedControlGroupValue == 2) {
-      return DateTimeComponents.dayOfWeekAndTime;
-    }
-  }
-
-  void selectEventDate() async {
-    final today =
-        DateTime(currentDate.year, currentDate.month, currentDate.day);
-    if (segmentedControlGroupValue == 0) {
-      eventDate = await showDatePicker(
-        context: context,
-        initialDate: today,
-        firstDate: today,
-        lastDate: new DateTime(currentDate.year + 10),
-      );
-      setState(() {});
-    } else if (segmentedControlGroupValue == 1) {
-      eventDate = today;
-    } else if (segmentedControlGroupValue == 2) {
-      CustomDayPicker(
-        onDaySelect: (val) {
-          print('$val: ${CustomDayPicker.weekdays[val]}');
-          eventDate = today.add(
-              Duration(days: (val - today.weekday + 1) % DateTime.daysPerWeek));
-        },
-      ).show(context);
-    }
   }
 }

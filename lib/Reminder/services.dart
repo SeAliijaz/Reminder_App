@@ -118,6 +118,7 @@ class NotificationService {
 }
 
 Future<void> onSelectNotification(String? payload) async {
-  await navigatorKey.currentState!
-      .push(MaterialPageRoute(builder: (_) => DetailsPage(payload: payload)));
+  await navigatorKey.currentState!.push(MaterialPageRoute(builder: (_) {
+    return DetailsPage(payload: payload);
+  }));
 }

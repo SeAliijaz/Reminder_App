@@ -17,7 +17,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.black),
       ),
@@ -37,19 +37,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                 )
-
-          // if (payload != null) _buildNotifiedReminderCard(payload!),
-          // if (payload == null)
-          //   Center(
-          //     child: Text(
-          //       "No reminders yet!",
-          //       style: TextStyle(
-          //         fontSize: 18.0,
-          //         fontWeight: FontWeight.w500,
-          //         color: Colors.black54,
-          //       ),
-          //     ),
-          //   )
         ],
       ),
     );
