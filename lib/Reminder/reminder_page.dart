@@ -2,10 +2,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:reminder_app/Reminder/services.dart';
-import 'package:sizer/sizer.dart';
 import 'details_page.dart';
 import 'widgets/action_buttons.dart';
 import 'widgets/custom_day_picker.dart';
@@ -70,6 +68,12 @@ class _ReminderPageState extends State<ReminderPage> {
     segmentedControlGroupValue = 0;
     eventDate = null;
     eventTime = null;
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   Widget _buildCancelAllButton() {

@@ -27,6 +27,7 @@ class NotificationService {
     channelDescription:
         "This channel is responsible for all the local notifications",
     playSound: true,
+    enableVibration: true,
     priority: Priority.high,
     importance: Importance.high,
   );
