@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:reminder_app/Constants/constants.dart';
 import 'package:reminder_app/Services/firebase_services.dart';
-import 'package:reminder_app/Notes-WorkSpace/Widgets/custom_button.dart';
+
+import '../../Widgets/custom_button.dart';
 
 class AddDataScreen extends StatefulWidget {
   @override
