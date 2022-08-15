@@ -1,22 +1,23 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class StopWatchScreen extends StatefulWidget {
-  StopWatchScreen({Key? key}) : super(key: key);
+  const StopWatchScreen({Key? key}) : super(key: key);
 
   @override
   State<StopWatchScreen> createState() => _StopWatchScreenState();
 }
 
 class _StopWatchScreenState extends State<StopWatchScreen> {
+  ///variable
   int seconds = 0, minutes = 0, hours = 0;
   String digitSeconds = "00", digitMinutes = "00", digitHours = "00";
   Timer? timer;
   bool started = false;
+
+  ///for laps
   List laps = [];
 
-  ///Functions
   ///stop function
   void stop() {
     timer!.cancel();
@@ -25,6 +26,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     });
   }
 
+  ///reset function
   void reset() {
     seconds = 0;
     minutes = 0;
@@ -37,14 +39,47 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     started = false;
   }
 
+  ///laps
   void addLaps() {
-    String lap = "$digitSeconds:$digitMinutes:$digitHours";
+    String lap = "$digitHours:$digitMinutes:$digitSeconds";
+    setState(() {
+      laps.add(lap);
+    });
+  }
+
+  ///start timer
+  void start() {
+    started = true;
+
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      int localSeconds = seconds + 1;
+      int localMinutes = minutes;
+      int localHours = hours;
+
+      if (localSeconds > 59) {
+        if (localMinutes > 59) {
+          localHours++;
+          localMinutes = 0;
+        } else {
+          localMinutes++;
+          localSeconds = 0;
+        }
+      }
+      setState(() {
+        seconds = localSeconds;
+        minutes = localMinutes;
+        hours = localHours;
+        digitSeconds = (seconds >= 10) ? "$seconds" : "0$seconds";
+        digitHours = (hours >= 10) ? "$hours" : "0$hours";
+        digitMinutes = (minutes >= 10) ? "$minutes" : "0$minutes";
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1c2757),
+      backgroundColor: const Color(0xff1c2757),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -52,7 +87,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                 child: Text(
                   "StopWatch Screen",
                   style: TextStyle(
@@ -62,11 +97,11 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Center(
                 child: Text(
-                  "00:00:00",
-                  style: TextStyle(
+                  "$digitHours:$digitMinutes:$digitSeconds",
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 70.0,
                     fontWeight: FontWeight.w500,
@@ -77,41 +112,75 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                 child: Container(
                   height: 400.0,
                   decoration: BoxDecoration(
-                    color: Color(0xff323F68),
+                    color: const Color(0xff323F68),
                     borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: ListView.builder(
+                    itemCount: laps.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Lap n' ${index + 1}",
+                              style: const TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: 12.5),
+                            Text(
+                              "${laps[index]}",
+                              style: const TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Row(
                 children: [
                   Expanded(
                     child: RawMaterialButton(
-                      shape: StadiumBorder(
+                      shape: const StadiumBorder(
                         side: BorderSide(color: Colors.lightBlue),
                       ),
                       child: Text(
-                        "START".toUpperCase(),
-                        style: TextStyle(color: Colors.white),
+                        (!started)
+                            ? "Start".toUpperCase()
+                            : "Pause".toUpperCase(),
+                        style: const TextStyle(color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        (!started) ? start() : stop();
+                      },
                     ),
                   ),
-                  SizedBox(width: 8.0),
+                  const SizedBox(width: 8.0),
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.flag, color: Colors.white),
+                    onPressed: () {
+                      addLaps();
+                    },
+                    icon: const Icon(Icons.flag, color: Colors.white),
                   ),
-                  SizedBox(width: 8.0),
+                  const SizedBox(width: 8.0),
                   Expanded(
                     child: RawMaterialButton(
                       fillColor: Colors.blue,
-                      shape: StadiumBorder(
+                      shape: const StadiumBorder(
                         side: BorderSide(color: Colors.lightBlue),
                       ),
                       child: Text(
                         "RESET".toUpperCase(),
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       onPressed: () {},
                     ),
