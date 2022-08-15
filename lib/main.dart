@@ -5,7 +5,9 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:reminder_app/Reminder/services.dart';
 import 'package:reminder_app/Services/theme_services.dart';
+import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 import 'package:sizer/sizer.dart';
+
 import 'Notepad/Notes_Screens/Show_Data_Screen/show_data_home_screen.dart';
 
 Future<void> main() async {
@@ -16,9 +18,6 @@ Future<void> main() async {
   await notificationService.initReminder();
   runApp(MyApp());
 }
-
-///global navigator
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: Themes.dark,
 
                 ///HOME
-                home: ShowDataScreen(),
+                home: StopWatchScreen(),
               );
             }
             return const Center(child: CircularProgressIndicator());
@@ -58,6 +57,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 // class NotesDataWidget extends StatelessWidget {
 //   const NotesDataWidget({
