@@ -58,92 +58,86 @@ class _AddDataScreenState extends State<AddDataScreen> {
         child: Form(
           key: formKey,
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 5,
-                vertical: 5,
-              ),
-              child: Column(
-                children: [
-                  const Divider(
-                    color: Colors.black38,
-                    height: 0.5,
+            child: Column(
+              children: [
+                const Divider(
+                  color: Colors.black38,
+                  height: 0.5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 10,
-                    ),
-                    child: TextFormField(
-                      controller: titleC,
-                      minLines: 1,
-                      maxLines: 200,
-                      validator: (_) {
-                        if (_!.isEmpty) {
-                          return "Field Should not be Empty";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(
-                            Icons.title,
-                            color: Colors.black,
-                          ),
-                          hintText: "Title",
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                          )),
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.black38,
-                    height: 0.5,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 10,
-                    ),
-                    child: TextFormField(
-                      controller: detailsC,
-                      minLines: 1,
-                      maxLines: 200,
-                      validator: (_) {
-                        if (_!.isEmpty) {
-                          return "Field Should not be Empty";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(
-                            Icons.description_sharp,
-                            color: Colors.black,
-                          ),
-                          hintText: "Enter details",
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                          )),
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.black38,
-                    height: 0.5,
-                  ),
-                  CustomButton(
-                    text: "Add Data",
-                    textColor: Colors.white,
-                    fontSize: 17,
-                    buttonColor: Colors.blue,
-                    onTap: () async {
-                      await saveForm();
+                  child: TextFormField(
+                    controller: titleC,
+                    minLines: 1,
+                    maxLines: 200,
+                    validator: (_) {
+                      if (_!.isEmpty) {
+                        return "Field Should not be Empty";
+                      } else {
+                        return null;
+                      }
                     },
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        prefixIcon: Icon(
+                          Icons.title,
+                          color: Colors.black,
+                        ),
+                        hintText: "Title",
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        )),
                   ),
-                ],
-              ),
+                ),
+                const Divider(
+                  color: Colors.black38,
+                  height: 0.5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  child: TextFormField(
+                    controller: detailsC,
+                    minLines: 1,
+                    maxLines: 200,
+                    validator: (_) {
+                      if (_!.isEmpty) {
+                        return "Field Should not be Empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        prefixIcon: Icon(
+                          Icons.description_sharp,
+                          color: Colors.black,
+                        ),
+                        hintText: "Enter details",
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        )),
+                  ),
+                ),
+                const Divider(
+                  color: Colors.black38,
+                  height: 0.5,
+                ),
+                CustomButton(
+                  text: "Add Data",
+                  textColor: Colors.white,
+                  fontSize: 17,
+                  buttonColor: Colors.blue,
+                  onTap: () async {
+                    await saveForm();
+                  },
+                ),
+              ],
             ),
           ),
         ),

@@ -29,6 +29,8 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
         }),
         child: const Icon(Icons.add),
       ),
+
+      ///Showing Data Condition
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection("Notes").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -107,11 +109,111 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
                 );
               },
             );
+          }
+
+          ///Other Conditions
+          if (!snapshot.hasData &&
+              snapshot.connectionState == ConnectionState.waiting) {
+            return CustomProgressIndicator(
+              textMessage: "No Data Found\nWaiting for Connection...",
+            );
+          }
+          if (!snapshot.hasData) {
+            return CustomProgressIndicator(textMessage: "No Data Found!");
+          }
+          if (!snapshot.hasData &&
+              snapshot.connectionState == ConnectionState.none) {
+            return CustomProgressIndicator(
+              textMessage: "No Data Found\n No Connection...",
+            );
+          }
+          if (!snapshot.hasData &&
+              snapshot.connectionState == ConnectionState.none &&
+              snapshot.connectionState == ConnectionState.waiting) {
+            return CustomProgressIndicator(
+              textMessage: "No data Found\n Waiting For Response",
+            );
           } else {
             return CustomProgressIndicator(
               textMessage: "Loading...",
             );
           }
+          // if (snapshot.hasData &&
+          //     snapshot.connectionState == ConnectionState.active) {
+          //   return ListView.builder(
+          //     itemCount: snapshot.data!.docs.length,
+          //     itemBuilder: (BuildContext context, int index) {
+          //       final v = snapshot.data!.docs[index];
+          //       return Dismissible(
+          //         direction: DismissDirection.startToEnd,
+          //         background: const Icon(Icons.delete),
+          //         key: UniqueKey(),
+          //         onDismissed: (_) {
+          //           FirebaseServices.deleteNotes(v.id).whenComplete(
+          //             () => showToastMsg("Notes Deleted Successfully!"),
+          //           );
+          //         },
+          //         child: Card(
+          //           elevation: 2,
+          //           child: ExpansionTile(
+          //             leading: IconButton(
+          //                 onPressed: () {
+          //                   Navigator.push(
+          //                       context,
+          //                       MaterialPageRoute(
+          //                           builder: (_) => EditDataScreen(
+          //                                 id: v.id,
+          //                                 title: v["title"],
+          //                                 details: v["details"],
+          //                               )));
+          //                 },
+          //                 icon: const Icon(Icons.edit)),
+          //             title: Text(
+          //               "${v["title"]}".toUpperCase(),
+          //               style: GoogleFonts.raleway(
+          //                 textStyle: const TextStyle(
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //             ),
+          //             children: [
+          //               myDivider,
+          //               Padding(
+          //                 padding: const EdgeInsets.only(left: 30),
+          //                 child: Align(
+          //                   alignment: Alignment.centerLeft,
+          //                   child: SelectableText(
+          //                     "Details",
+          //                     textAlign: TextAlign.center,
+          //                     style: GoogleFonts.raleway(
+          //                       textStyle: const TextStyle(
+          //                         fontSize: 20,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ),
+          //               myDivider,
+          //               Padding(
+          //                 padding: const EdgeInsets.all(12.0),
+          //                 child: SelectableText(
+          //                   "${v["details"]}",
+          //                   textAlign: TextAlign.center,
+          //                   style: GoogleFonts.raleway(
+          //                     textStyle: const TextStyle(
+          //                       fontSize: 18,
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ),
+          //               myDivider
+          //             ],
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   );
+          // }
         },
       ),
     );

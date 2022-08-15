@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:reminder_app/Services/firebase_services.dart';
-
 import '../../../Constants/constants.dart';
 import '../../Widgets/custom_button.dart';
 
@@ -57,78 +56,72 @@ class _EditDataScreenState extends State<EditDataScreen> {
         width: s.width,
         child: Form(
           key: globalKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 5,
-              vertical: 5,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ///Title ExpansionTile
-                  Card(
-                    child: ExpansionTile(
-                      title: const Text("Title"),
-                      children: [
-                        myDivider,
-                        TextFormField(
-                          controller: titleC,
-                          minLines: 1,
-                          maxLines: 200,
-                          // validator: (_) {},
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: const Icon(
-                                Icons.title,
-                                color: Colors.black,
-                              ),
-                              hintText: "${widget.title}",
-                              hintStyle: const TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
-                        myDivider,
-                      ],
-                    ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ///Title ExpansionTile
+                Card(
+                  child: ExpansionTile(
+                    title: const Text("Title"),
+                    children: [
+                      myDivider,
+                      TextFormField(
+                        controller: titleC,
+                        minLines: 1,
+                        maxLines: 200,
+                        // validator: (_) {},
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: const Icon(
+                              Icons.title,
+                              color: Colors.black,
+                            ),
+                            hintText: "${widget.title}",
+                            hintStyle: const TextStyle(
+                              color: Colors.black,
+                            )),
+                      ),
+                      myDivider,
+                    ],
                   ),
+                ),
 
-                  ///Details ExpansionTile
-                  Card(
-                    child: ExpansionTile(
-                      title: const Text('Details'),
-                      children: [
-                        myDivider,
-                        TextFormField(
-                          controller: detailsC,
-                          minLines: 1,
-                          maxLines: 200,
-                          // validator: (_) {},
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: const Icon(
-                                Icons.description_sharp,
-                                color: Colors.black,
-                              ),
-                              hintText: "${widget.details}",
-                              hintStyle: const TextStyle(
-                                color: Colors.black,
-                              )),
-                        ),
-                        myDivider,
-                      ],
-                    ),
+                ///Details ExpansionTile
+                Card(
+                  child: ExpansionTile(
+                    title: const Text('Details'),
+                    children: [
+                      myDivider,
+                      TextFormField(
+                        controller: detailsC,
+                        minLines: 1,
+                        maxLines: 200,
+                        // validator: (_) {},
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: const Icon(
+                              Icons.description_sharp,
+                              color: Colors.black,
+                            ),
+                            hintText: "${widget.details}",
+                            hintStyle: const TextStyle(
+                              color: Colors.black,
+                            )),
+                      ),
+                      myDivider,
+                    ],
                   ),
-                  CustomButton(
-                    text: "Update Data",
-                    textColor: Colors.white,
-                    fontSize: 17,
-                    buttonColor: Colors.blue,
-                    onTap: () async {
-                      await updateForm();
-                    },
-                  ),
-                ],
-              ),
+                ),
+                CustomButton(
+                  text: "Update Data",
+                  textColor: Colors.white,
+                  fontSize: 17,
+                  buttonColor: Colors.blue,
+                  onTap: () async {
+                    await updateForm();
+                  },
+                ),
+              ],
             ),
           ),
         ),
