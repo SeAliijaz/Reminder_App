@@ -3,22 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:reminder_app/Reminder/details_screen.dart';
 import 'package:reminder_app/Reminder/services.dart';
-import 'details_page.dart';
 import 'widgets/action_buttons.dart';
 import 'widgets/custom_day_picker.dart';
 import 'widgets/date_field.dart';
 import 'widgets/header.dart';
 import 'widgets/time_field.dart';
 
-class ReminderPage extends StatefulWidget {
-  const ReminderPage({Key? key}) : super(key: key);
+class ReminderScreen extends StatefulWidget {
+  static const String pageRoute = "/ReminderScreen";
+
+  const ReminderScreen({Key? key}) : super(key: key);
 
   @override
-  _ReminderPageState createState() => _ReminderPageState();
+  _ReminderScreenState createState() => _ReminderScreenState();
 }
 
-class _ReminderPageState extends State<ReminderPage> {
+class _ReminderScreenState extends State<ReminderScreen> {
   NotificationService notificationService = NotificationService();
 
   final int maxTitleLength = 50;
@@ -147,7 +149,7 @@ class _ReminderPageState extends State<ReminderPage> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => DetailsPage(payload: null),
+                  builder: (context) => DetailsScreen(payload: null),
                 ),
               );
             },

@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-class DetailsPage extends StatefulWidget {
-  const DetailsPage({
+class DetailsScreen extends StatefulWidget {
+  const DetailsScreen({
     Key? key,
     required this.payload,
   }) : super(key: key);
   final String? payload;
 
   @override
-  State<DetailsPage> createState() => _DetailsPageState();
+  State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _DetailsPageState extends State<DetailsPage> {
+class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -5,6 +5,8 @@ import 'package:reminder_app/Services/firebase_services.dart';
 import '../../Widgets/custom_button.dart';
 
 class AddDataScreen extends StatefulWidget {
+  static const String pageRoute = "/AddDataScreen";
+
   @override
   State<AddDataScreen> createState() {
     return _AddDataScreenState();

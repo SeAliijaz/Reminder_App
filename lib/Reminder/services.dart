@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:reminder_app/Constants/constants.dart';
-import 'package:reminder_app/Reminder/details_page.dart';
+import 'package:reminder_app/Reminder/details_screen.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -120,6 +120,6 @@ class NotificationService {
 
 Future<void> onSelectNotification(String? payload) async {
   await navigatorKey.currentState!.push(MaterialPageRoute(builder: (_) {
-    return DetailsPage(payload: payload);
+    return DetailsScreen(payload: payload);
   }));
 }

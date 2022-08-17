@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class StopWatchScreen extends StatefulWidget {
+  static const String pageRoute = "";
   const StopWatchScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,8 +36,9 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     digitSeconds = "00";
     digitMinutes = "00";
     digitHours = "00";
-
-    started = false;
+    setState(() {
+      started = false;
+    });
   }
 
   ///laps

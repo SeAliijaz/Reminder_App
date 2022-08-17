@@ -8,6 +8,8 @@ import '../Add_Data_Screen/add_data_screen.dart';
 import '../Edit_Data_Screen/edit_data_screen.dart';
 
 class ShowDataScreen extends StatefulWidget {
+  static const String pageRoute = "/ShowDataScreen";
+
   const ShowDataScreen({Key? key}) : super(key: key);
 
   @override

@@ -4,6 +4,8 @@ import '../../../Constants/constants.dart';
 import '../../Widgets/custom_button.dart';
 
 class EditDataScreen extends StatefulWidget {
+  static const String pageRoute = "/EditDataScreen";
+
   ///var
   String? title;
   String? details;

@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:reminder_app/Credientals-Screens/login_screen.dart';
+import 'package:reminder_app/Credientals-Screens/signup_screen.dart';
+import 'package:reminder_app/Notepad/Notes_Screens/Add_Data_Screen/add_data_screen.dart';
+import 'package:reminder_app/Notepad/Notes_Screens/Edit_Data_Screen/edit_data_screen.dart';
+import 'package:reminder_app/Reminder/reminder_screen.dart';
 import 'package:reminder_app/Reminder/services.dart';
+import 'package:reminder_app/Screens/home_screen.dart';
 import 'package:reminder_app/Services/theme_services.dart';
 import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 import 'package:sizer/sizer.dart';
@@ -47,7 +53,19 @@ class MyApp extends StatelessWidget {
                 darkTheme: Themes.dark,
 
                 ///HOME
-                home: StopWatchScreen(),
+                home: const StopWatchScreen(),
+
+                ///PageRoute
+                routes: {
+                  HomeScreen.pageRoute: (p0) => const HomeScreen(),
+                  LogInScreen.pageRoute: (p0) => const LogInScreen(),
+                  SignUpScreen.pageRoute: (p0) => const SignUpScreen(),
+                  ShowDataScreen.pageRoute: (p0) => const ShowDataScreen(),
+                  AddDataScreen.pageRoute: (p0) => AddDataScreen(),
+                  EditDataScreen.pageRoute: (p0) => EditDataScreen(),
+                  ReminderScreen.pageRoute: (p0) => const ReminderScreen(),
+                  StopWatchScreen.pageRoute: (p0) => const StopWatchScreen(),
+                },
               );
             }
             return const Center(child: CircularProgressIndicator());
