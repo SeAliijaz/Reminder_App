@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: Themes.dark,
 
                 ///HOME
-                home: const StopWatchScreen(),
+                home: const HomeScreen(),
 
                 ///PageRoute
                 routes: {

@@ -30,7 +30,6 @@ class _ReminderScreenState extends State<ReminderScreen> {
 
   DateTime currentDate = DateTime.now();
   DateTime? eventDate;
-
   TimeOfDay currentTime = TimeOfDay.now();
   TimeOfDay? eventTime;
 
