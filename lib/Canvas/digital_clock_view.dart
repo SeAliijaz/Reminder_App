@@ -18,29 +18,31 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
 
   @override
   void initState() {
-    this.timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      var perviousMinute = DateTime.now().add(Duration(seconds: -1)).minute;
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      var perviousMinute =
+          DateTime.now().add(const Duration(seconds: -1)).minute;
       var currentMinute = DateTime.now().minute;
-      if (perviousMinute != currentMinute)
+      if (perviousMinute != currentMinute) {
         setState(() {
-          formattedTime = DateFormat('HH:mm').format(DateTime.now());
+          formattedTime = DateFormat("HH:mm").format(DateTime.now());
         });
+      }
     });
     super.initState();
   }
 
   @override
   void dispose() {
-    this.timer.cancel();
+    timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('=====>digital clock updated');
+    debugPrint('=====> digital clock updated <=====');
     return Text(
       formattedTime,
-      style: TextStyle(fontSize: 25),
+      style: const TextStyle(fontSize: 25, color: Colors.white),
     );
   }
 }

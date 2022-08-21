@@ -81,7 +81,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1c2757),
+      // backgroundColor: const Color(0xff1c2757),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

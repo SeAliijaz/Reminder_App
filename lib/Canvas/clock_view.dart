@@ -18,13 +18,15 @@ class _ClockViewState extends State<ClockView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 300,
-      child: Transform.rotate(
-        angle: -pi / 2,
-        child: CustomPaint(
-          painter: ClockPainter(),
+    return Center(
+      child: Container(
+        width: 300,
+        height: 300,
+        child: Transform.rotate(
+          angle: -pi / 2,
+          child: CustomPaint(
+            painter: ClockPainter(),
+          ),
         ),
       ),
     );
@@ -82,7 +84,7 @@ class ClockPainter extends CustomPainter {
       ..strokeWidth = 12;
 
     var dashBrush = Paint()
-      ..color = Colors.black
+      ..color = Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1;

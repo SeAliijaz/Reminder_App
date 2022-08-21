@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:reminder_app/Canvas/clock_view.dart';
-import 'package:reminder_app/Canvas/digital_clock_view.dart';
+import 'package:reminder_app/Reminder/reminder_screen.dart';
+import 'package:reminder_app/Screens/home_screen_clock_view.dart';
+import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String pageRoute = "/HomeScreen";
@@ -14,67 +14,48 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  static const List _pages = [
+    HomeScreenClockView(),
+    ReminderScreen(),
+    StopWatchScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    ///variable in widget build
-    var now = DateTime.now();
-    var formattedDate = DateFormat('EEE, d/MMM/yyyy').format(now);
-    var timezoneString = now.timeZoneOffset.toString().split('.').first;
-    var offsetSign = '';
-    if (!timezoneString.startsWith('-')) offsetSign = '+';
-
     ///Scaffold
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Clock',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ///Digital Clock view
-              const DigitalClockWidget(),
-
-              ///Date
-              Text(
-                formattedDate,
-                style:
-                    const TextStyle(fontWeight: FontWeight.w300, fontSize: 20),
-              ),
-            ],
-          ),
-
-          ///Analog Clock
-          ClockView(),
-
-          ///TimeZone
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Timezone',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
-              ),
-              Row(
-                children: <Widget>[
-                  const Icon(
-                    Icons.language,
-                  ),
-                  const SizedBox(width: 16),
-                  Text(
-                    'UTC$offsetSign$timezoneString',
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      )),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home Screen',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.alarm),
+              label: 'Alarm Screen',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.watch),
+              label: 'Stopwatch screen',
+            ),
+          ],
+        ),
+        body: Center(
+          child: _pages.elementAt(_selectedIndex),
+        ),
+      ),
     );
   }
 }

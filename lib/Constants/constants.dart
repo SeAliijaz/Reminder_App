@@ -10,3 +10,5 @@ const myDivider = Divider(color: Colors.black12, thickness: 1);
 
 ///global navigator
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+Color scaffoldBgColor = Color(0xff1c2757);

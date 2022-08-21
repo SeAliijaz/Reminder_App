@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:reminder_app/Credientals-Screens/login_screen.dart';
 import 'package:reminder_app/Credientals-Screens/signup_screen.dart';
 import 'package:reminder_app/Notepad/Notes_Screens/Add_Data_Screen/add_data_screen.dart';
@@ -10,7 +8,6 @@ import 'package:reminder_app/Notepad/Notes_Screens/Edit_Data_Screen/edit_data_sc
 import 'package:reminder_app/Reminder/reminder_screen.dart';
 import 'package:reminder_app/Reminder/services.dart';
 import 'package:reminder_app/Screens/home_screen.dart';
-import 'package:reminder_app/Services/theme_services.dart';
 import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,8 +15,6 @@ import 'Notepad/Notes_Screens/Show_Data_Screen/show_data_home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await DBHelper.initDb();
-  await GetStorage.init();
   NotificationService notificationService = NotificationService();
   await notificationService.initReminder();
   runApp(MyApp());
@@ -45,12 +40,17 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.done) {
               ///GETX
               ///GetMaterialApp
-              return GetMaterialApp(
+              return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Reminder app',
-                theme: Themes.light,
-                themeMode: ThemeServices().theme,
-                darkTheme: Themes.dark,
+                theme: ThemeData(
+                  scaffoldBackgroundColor: const Color(0xff1c2757),
+                  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                    backgroundColor: Color(0xff1c2757),
+                    selectedItemColor: Colors.white,
+                    unselectedItemColor: Colors.blue,
+                  ),
+                ),
 
                 ///HOME
                 home: const HomeScreen(),
