@@ -91,7 +91,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
             children: [
               const Center(
                 child: Text(
-                  "StopWatch Screen",
+                  "Stopwatch",
                   style: TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,

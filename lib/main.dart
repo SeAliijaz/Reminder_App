@@ -45,11 +45,6 @@ class MyApp extends StatelessWidget {
                 title: 'Reminder app',
                 theme: ThemeData(
                   scaffoldBackgroundColor: const Color(0xff1c2757),
-                  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                    backgroundColor: Color(0xff1c2757),
-                    selectedItemColor: Colors.white,
-                    unselectedItemColor: Colors.blue,
-                  ),
                 ),
 
                 ///HOME
