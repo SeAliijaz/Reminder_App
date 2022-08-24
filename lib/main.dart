@@ -2,17 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:reminder_app/Credientals-Screens/login_screen.dart';
-import 'package:reminder_app/Credientals-Screens/signup_screen.dart';
-import 'package:reminder_app/Notepad/Notes_Screens/Add_Data_Screen/add_data_screen.dart';
-import 'package:reminder_app/Notepad/Notes_Screens/Edit_Data_Screen/edit_data_screen.dart';
-import 'package:reminder_app/Reminder/reminder_screen.dart';
+import 'package:reminder_app/Debug-Screen/debug_screen.dart';
 import 'package:reminder_app/Reminder/services.dart';
 import 'package:reminder_app/Screens/home_screen.dart';
-import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 import 'package:sizer/sizer.dart';
-
-import 'Notepad/Notes_Screens/Show_Data_Screen/show_data_home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +24,7 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: ((context, orientation, deviceType) {
         ///FutureBuilder
+        ///Connected to Firebase
         return FutureBuilder(
           future: _initialization,
           builder: (context, snapshot) {
@@ -39,26 +33,12 @@ class MyApp extends StatelessWidget {
               Fluttertoast.showToast(msg: "something went wrong");
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              ///GETX
-              ///GetMaterialApp
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Reminder app',
 
                 ///HOME
-                home: const HomeScreen(),
-
-                ///PageRoute
-                routes: {
-                  HomeScreen.pageRoute: (p0) => const HomeScreen(),
-                  LogInScreen.pageRoute: (p0) => const LogInScreen(),
-                  SignUpScreen.pageRoute: (p0) => const SignUpScreen(),
-                  ShowDataScreen.pageRoute: (p0) => const ShowDataScreen(),
-                  AddDataScreen.pageRoute: (p0) => AddDataScreen(),
-                  EditDataScreen.pageRoute: (p0) => EditDataScreen(),
-                  ReminderScreen.pageRoute: (p0) => const ReminderScreen(),
-                  StopWatchScreen.pageRoute: (p0) => const StopWatchScreen(),
-                },
+                home: kReleaseMode ? HomeScreen() : DebugScreen(),
               );
             }
             return const Center(child: CircularProgressIndicator());

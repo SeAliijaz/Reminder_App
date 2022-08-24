@@ -15,10 +15,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var now = DateTime.now();
-    var formattedTime = DateFormat.jm().format(now);
-    var formattedDate = DateFormat("EEE, dd/MM/yyyy").format(now);
-    var timeZoneString = now.timeZoneOffset.toString().split(".").first;
+    ///Constructs a [DateTime] instance with current date and time in the local time zone.
+    DateTime dateTimeNow = DateTime.now();
+
+    ///Time format for example like
+    ///DateFormat.jm() -------> 5:08 PM <-------
+    var formattedTime = DateFormat.jm().format(dateTimeNow);
+
+    ///Date format like
+    ///Wed, 24/08/2022
+    var formattedDate = DateFormat("EEE, dd/MM/yyyy").format(dateTimeNow);
+    var timeZoneString = dateTimeNow.timeZoneOffset.toString().split(".").first;
     var offSetSign = "";
     if (!timeZoneString.startsWith("-")) offSetSign = "+";
     debugPrint(timeZoneString.toString());
@@ -30,16 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              ///Side Menu Buttons
               buildMenuButtons("Clock", "assets/clock_icon.png"),
-              buildMenuButtons("alarm", "assets/alarm_icon.png"),
-              buildMenuButtons("timer", "assets/timer_icon.png"),
-              buildMenuButtons("stopwatch", "assets/stopwatch_icon.png"),
+              buildMenuButtons("Alarm", "assets/alarm_icon.png"),
+              buildMenuButtons("Timer", "assets/timer_icon.png"),
+              buildMenuButtons("Stopwatch", "assets/stopwatch_icon.png"),
             ],
           ),
+
+          ///Vertical Divider
           VerticalDivider(
             color: Colors.white54,
             width: 1,
           ),
+
+          ///Canvas Clock Side
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
@@ -144,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Image.asset(
-                image,
+                image.toUpperCase(),
                 scale: 1.5,
               ),
               SizedBox(height: 15),
