@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:reminder_app/Credientals-Screens/login_screen.dart';
@@ -43,9 +44,6 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Reminder app',
-                theme: ThemeData(
-                  scaffoldBackgroundColor: const Color(0xff1c2757),
-                ),
 
                 ///HOME
                 home: const HomeScreen(),
