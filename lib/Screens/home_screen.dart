@@ -12,10 +12,15 @@ class HomeScreen extends StatefulWidget {
   }
 }
 
+///for Documentation to Read Date time formats
+///Visit below site:
+///https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    ///Constructs a [DateTime] instance with current date and time in the local time zone.
+    ///This DateTime widget constructs a [DateTime] instance
+    ///With current date and time in the local time zone.
     DateTime dateTimeNow = DateTime.now();
 
     ///Time format for example like
