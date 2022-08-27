@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons({
@@ -38,16 +37,13 @@ class ActionButtons extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             child: Container(
-              padding: EdgeInsets.all(2.h),
               child: Center(
                 child: Text(
                   'CANCEL',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16.sp,
-                        color: Colors.white),
+                        fontWeight: FontWeight.w700, color: Colors.white),
                   ),
                 ),
               ),
@@ -76,16 +72,13 @@ class ActionButtons extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             child: Container(
-              padding: EdgeInsets.all(2.h),
               child: Center(
                 child: Text(
                   'CREATE',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16.sp,
-                        color: Colors.white),
+                        fontWeight: FontWeight.w700, color: Colors.white),
                   ),
                 ),
               ),

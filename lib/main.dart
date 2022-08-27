@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:reminder_app/Debug-Screen/debug_screen.dart';
 import 'package:reminder_app/Reminder/services.dart';
 import 'package:reminder_app/Screens/home_screen.dart';
-import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,30 +20,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: ((context, orientation, deviceType) {
-        ///FutureBuilder
-        ///Connected to Firebase
-        return FutureBuilder(
-          future: _initialization,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              debugPrint("something went wrong");
-              Fluttertoast.showToast(msg: "something went wrong");
-            }
-            if (snapshot.connectionState == ConnectionState.done) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Reminder app',
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          debugPrint("something went wrong");
+          Fluttertoast.showToast(msg: "something went wrong");
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Reminder app',
 
-                ///HOME
-                home: kReleaseMode ? HomeScreen() : DebugScreen(),
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
-        );
-      }),
+            ///HOME
+            home: kReleaseMode ? HomeScreen() : DebugScreen(),
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
