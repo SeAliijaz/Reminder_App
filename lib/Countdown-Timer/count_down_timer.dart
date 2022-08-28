@@ -49,19 +49,25 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
   Widget build(BuildContext context) {
     final Size s = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        height: s.height,
-        width: s.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ///Stopwatch timer
-            _buildTimer(),
+      body: Row(
+        children: [
+          Expanded(
+            child: SizedBox(
+              height: s.height,
+              width: s.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ///Stopwatch timer
+                  _buildTimer(),
 
-            ///buttons
-            _builButtons(),
-          ],
-        ),
+                  ///buttons
+                  _builButtons(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

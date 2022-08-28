@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:reminder_app/Canvas/clock_view.dart';
+import 'package:reminder_app/Constants/enums.dart';
 import 'package:reminder_app/Constants/theme_data.dart';
+import 'package:reminder_app/Countdown-Timer/count_down_timer.dart';
 import 'package:reminder_app/Models/data_menu_info.dart';
 import 'package:reminder_app/Models/menu_info.dart';
+import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String pageRoute = "/HomeScreen";
@@ -51,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           ///Vertical Divider
-          VerticalDivider(
+          const VerticalDivider(
             color: Colors.white54,
             width: 1,
           ),
@@ -60,16 +64,33 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Consumer<MenuInfo>(
               builder: ((context, value, child) {
+                if (value.menuType != MenuType.clock) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'This feature will be uploaded soon'.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.salsa(
+                          textStyle: TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
                 return Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
+                      const Flexible(
                         flex: 1,
                         fit: FlexFit.tight,
-                        child: Text(
+                        child: const Text(
                           "Clock",
                           style: TextStyle(
                               fontSize: 24,
@@ -87,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ///DateTime.now();
                             Text(
                               formattedTime,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 45,
                                 color: Colors.white,
                               ),
@@ -96,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ///Format Date
                             Text(
                               formattedDate,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 20,
                                 color: Colors.white60,
                               ),
@@ -121,9 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Time zone",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                               ),
@@ -164,11 +185,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<MenuInfo>(
       builder: ((BuildContext context, MenuInfo value, child) {
         return MaterialButton(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
               topRight: Radius.circular(20),
             )),
-            padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 5.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 5.0),
             color: currentMenuInfo.menuType == value.menuType
                 ? CustomColors.menuBackgroundColor
                 : Colors.transparent,
