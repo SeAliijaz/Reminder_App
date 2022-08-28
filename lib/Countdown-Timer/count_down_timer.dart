@@ -55,7 +55,10 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            ///Stopwatch timer
             _buildTimer(),
+
+            ///buttons
             _builButtons(),
           ],
         ),

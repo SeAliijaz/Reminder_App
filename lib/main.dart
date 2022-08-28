@@ -2,7 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:reminder_app/Constants/enums.dart';
 import 'package:reminder_app/Debug-Screen/debug_screen.dart';
+import 'package:reminder_app/Models/menu_info.dart';
 import 'package:reminder_app/Reminder/services.dart';
 import 'package:reminder_app/Screens/home_screen.dart';
 
@@ -33,7 +36,10 @@ class MyApp extends StatelessWidget {
             title: 'Reminder app',
 
             ///HOME
-            home: kReleaseMode ? HomeScreen() : DebugScreen(),
+            home: ChangeNotifierProvider<MenuInfo>(
+              create: (context) => MenuInfo(MenuType.clock),
+              child: HomeScreen(),
+            ),
           );
         }
         return const Center(child: CircularProgressIndicator());

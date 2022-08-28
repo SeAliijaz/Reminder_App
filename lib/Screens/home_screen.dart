@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:reminder_app/Canvas/clock_view.dart';
+import 'package:reminder_app/Constants/theme_data.dart';
+import 'package:reminder_app/Models/data_menu_info.dart';
+import 'package:reminder_app/Models/menu_info.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String pageRoute = "/HomeScreen";
@@ -41,13 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ///Side Menu Buttons
-              buildMenuButtons("Clock", "assets/clock_icon.png"),
-              buildMenuButtons("Alarm", "assets/alarm_icon.png"),
-              buildMenuButtons("Timer", "assets/timer_icon.png"),
-              buildMenuButtons("Stopwatch", "assets/stopwatch_icon.png"),
-            ],
+            children: menuItems.map((currentMenuInfo) {
+              return buildMenuButtons(currentMenuInfo);
+            }).toList(),
           ),
 
           ///Vertical Divider
@@ -58,94 +58,101 @@ class _HomeScreenState extends State<HomeScreen> {
 
           ///Canvas Clock Side
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    flex: 1,
-                    fit: FlexFit.tight,
-                    child: Text(
-                      "Clock",
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    fit: FlexFit.tight,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ///Format Time
-                        ///DateTime.now();
-                        Text(
-                          formattedTime,
+            child: Consumer<MenuInfo>(
+              builder: ((context, value, child) {
+                return Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        fit: FlexFit.tight,
+                        child: Text(
+                          "Clock",
                           style: TextStyle(
-                            fontSize: 45,
-                            color: Colors.white,
-                          ),
-                        ),
-
-                        ///Format Date
-                        Text(
-                          formattedDate,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white60,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  ///clock view
-                  Flexible(
-                    flex: 4,
-                    fit: FlexFit.tight,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: ClockView(
-                          size: MediaQuery.of(context).size.height / 4),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    fit: FlexFit.tight,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Time zone",
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.language,
+                              fontSize: 24,
                               color: Colors.white,
-                            ),
-                            const SizedBox(width: 10),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        fit: FlexFit.tight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ///Format Time
+                            ///DateTime.now();
                             Text(
-                              "utc".toUpperCase() + offSetSign + timeZoneString,
+                              formattedTime,
+                              style: TextStyle(
+                                fontSize: 45,
+                                color: Colors.white,
+                              ),
+                            ),
+
+                            ///Format Date
+                            Text(
+                              formattedDate,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white60,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      ///clock view
+                      Flexible(
+                        flex: 4,
+                        fit: FlexFit.tight,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: ClockView(
+                              size: MediaQuery.of(context).size.height / 4),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        fit: FlexFit.tight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Time zone",
                               style: const TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                               ),
                             ),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.language,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  "utc".toUpperCase() +
+                                      offSetSign +
+                                      timeZoneString,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              }),
             ),
           ),
         ],
@@ -153,27 +160,39 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Padding buildMenuButtons(String title, String image) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: MaterialButton(
-          onPressed: () {},
-          child: Column(
-            children: [
-              Image.asset(
-                image.toUpperCase(),
-                scale: 1.5,
-              ),
-              SizedBox(height: 15),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white,
+  Widget buildMenuButtons(MenuInfo currentMenuInfo) {
+    return Consumer<MenuInfo>(
+      builder: ((BuildContext context, MenuInfo value, child) {
+        return MaterialButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+            )),
+            padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 5.0),
+            color: currentMenuInfo.menuType == value.menuType
+                ? CustomColors.menuBackgroundColor
+                : Colors.transparent,
+            onPressed: () {
+              var menuInfo = Provider.of<MenuInfo>(context, listen: false);
+              menuInfo.updateMenu(currentMenuInfo);
+            },
+            child: Column(
+              children: [
+                Image.asset(
+                  currentMenuInfo.imageSource ?? "",
+                  scale: 1.5,
                 ),
-              )
-            ],
-          )),
+                const SizedBox(height: 15),
+                Text(
+                  currentMenuInfo.title ?? "",
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ));
+      }),
     );
   }
 }

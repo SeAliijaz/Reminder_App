@@ -1,25 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Debug Screen'),
-        centerTitle: true,
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.network(
-              "https://cdn-icons-png.flaticon.com/512/1541/1541402.png"),
-          SizedBox(height: 10),
-          Text(
-            'Debug Screen\n Your app is in Debug Mode',
-            style: TextStyle(
-              fontSize: 25.5,
-              fontWeight: FontWeight.bold,
+          Center(
+            child: Text(
+              'Debug Mode'.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.salsa(
+                textStyle: TextStyle(
+                  fontSize: 25.0,
+                ),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RotatedBox(
+                quarterTurns: 3,
+                child: Center(
+                  child: Text(
+                    'Debug Mode'.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.salsa(
+                      textStyle: TextStyle(
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Center(child: Image.asset("assets/debug_mode.png")),
+              RotatedBox(
+                quarterTurns: 1,
+                child: Center(
+                  child: Text(
+                    'Debug Mode'.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.salsa(
+                      textStyle: TextStyle(
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: Text(
+              'Debug Mode'.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.salsa(
+                textStyle: TextStyle(
+                  fontSize: 25.0,
+                ),
+              ),
             ),
           ),
         ],
