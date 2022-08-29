@@ -14,7 +14,7 @@ class DebugScreen extends StatelessWidget {
               'Debug Mode'.toUpperCase(),
               textAlign: TextAlign.center,
               style: GoogleFonts.salsa(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 25.0,
                 ),
               ),
@@ -30,7 +30,7 @@ class DebugScreen extends StatelessWidget {
                     'Debug Mode'.toUpperCase(),
                     textAlign: TextAlign.center,
                     style: GoogleFonts.salsa(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontSize: 25.0,
                       ),
                     ),
@@ -45,7 +45,7 @@ class DebugScreen extends StatelessWidget {
                     'Debug Mode'.toUpperCase(),
                     textAlign: TextAlign.center,
                     style: GoogleFonts.salsa(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontSize: 25.0,
                       ),
                     ),
@@ -59,7 +59,7 @@ class DebugScreen extends StatelessWidget {
               'Debug Mode'.toUpperCase(),
               textAlign: TextAlign.center,
               style: GoogleFonts.salsa(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 25.0,
                 ),
               ),

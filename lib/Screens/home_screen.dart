@@ -5,10 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:reminder_app/Canvas/clock_view.dart';
 import 'package:reminder_app/Constants/enums.dart';
 import 'package:reminder_app/Constants/theme_data.dart';
-import 'package:reminder_app/Countdown-Timer/count_down_timer.dart';
 import 'package:reminder_app/Models/data_menu_info.dart';
 import 'package:reminder_app/Models/menu_info.dart';
-import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String pageRoute = "/HomeScreen";

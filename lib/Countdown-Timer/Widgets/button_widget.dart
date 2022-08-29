@@ -17,7 +17,7 @@ class ButtonWidget extends StatelessWidget {
       onPressed: onClicked,
       child: Text(
         text.toUpperCase(),
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),

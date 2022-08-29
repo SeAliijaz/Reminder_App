@@ -36,9 +36,8 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     digitSeconds = "00";
     digitMinutes = "00";
     digitHours = "00";
-    setState(() {
-      started = false;
-    });
+
+    started = false;
   }
 
   ///laps

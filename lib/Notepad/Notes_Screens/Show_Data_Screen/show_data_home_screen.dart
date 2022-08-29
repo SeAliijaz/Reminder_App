@@ -140,7 +140,12 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
               textMessage: "Loading...",
             );
           }
-          // if (snapshot.hasData &&
+        },
+      ),
+    );
+  }
+}
+     // if (snapshot.hasData &&
           //     snapshot.connectionState == ConnectionState.active) {
           //   return ListView.builder(
           //     itemCount: snapshot.data!.docs.length,
@@ -216,8 +221,3 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
           //     },
           //   );
           // }
-        },
-      ),
-    );
-  }
-}

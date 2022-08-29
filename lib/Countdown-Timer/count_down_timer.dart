@@ -19,7 +19,7 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
       _resetTimer();
     }
 
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (seconds > 0) {
         setState(() {
           seconds--;
@@ -114,7 +114,7 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
             color: Colors.red,
             value: 1 - seconds / maxSeconds,
             strokeWidth: 10,
-            valueColor: AlwaysStoppedAnimation(Colors.white),
+            valueColor: const AlwaysStoppedAnimation(Colors.white),
             backgroundColor: Colors.greenAccent,
           ),
           Center(
@@ -129,7 +129,7 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
     if (seconds == 0) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           Icon(
             Icons.done,
             color: Colors.greenAccent,
@@ -148,7 +148,7 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
     } else {
       return Text(
         "$seconds",
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 70,
           fontWeight: FontWeight.bold,
           color: Colors.white,

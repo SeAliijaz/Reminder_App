@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:reminder_app/Constants/enums.dart';
-import 'package:reminder_app/Debug-Screen/debug_screen.dart';
 import 'package:reminder_app/Models/menu_info.dart';
 import 'package:reminder_app/Reminder/services.dart';
 import 'package:reminder_app/Screens/home_screen.dart';
@@ -47,46 +45,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// class NotesDataWidget extends StatelessWidget {
-//   const NotesDataWidget({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamBuilder<QuerySnapshot>(
-//       stream: FirebaseFirestore.instance.collection("Notes").snapshots(),
-//       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-//         if (snapshot.hasData &&
-//             snapshot.connectionState == ConnectionState.active) {
-//           return const ShowDataScreen();
-//         }
-//         if (!snapshot.hasData &&
-//             snapshot.connectionState == ConnectionState.waiting) {
-//           return CustomProgressIndicator(
-//             textMessage: "Waiting for Connection...",
-//           );
-//         }
-//         if (!snapshot.hasData &&
-//             snapshot.connectionState == ConnectionState.none) {
-//           return CustomProgressIndicator(
-//             textMessage: "No Connection...",
-//           );
-//         }
-//         if (!snapshot.hasData &&
-//             snapshot.connectionState == ConnectionState.none &&
-//             snapshot.connectionState == ConnectionState.waiting) {
-//           return CustomProgressIndicator(
-//             textMessage: "Waiting For Response",
-//           );
-//         } else {
-//           return CustomProgressIndicator(
-//             textMessage: "Loading...",
-//           );
-//         }
-//       },
-//     );
-//   }
-// }

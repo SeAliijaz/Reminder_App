@@ -7,10 +7,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('SignUpScreen'),
-      ),
+    return const Scaffold(
       body: Center(
         child: Text('SignUpScreen'),
       ),
