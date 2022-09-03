@@ -84,7 +84,6 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text("Stopwatch timer"),
-        centerTitle: true,
         elevation: 0.0,
       ),
       body: SafeArea(

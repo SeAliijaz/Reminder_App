@@ -51,7 +51,6 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text("Countdown timer"),
-        centerTitle: true,
         elevation: 0.0,
       ),
       body: Row(

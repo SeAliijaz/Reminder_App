@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ///Vertical Divider
           const VerticalDivider(
             color: Colors.white,
-            width: 1,
+            width: 2,
           ),
 
           ///Canvas Clock Side
