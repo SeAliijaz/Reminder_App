@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:reminder_app/Canvas/clock_view.dart';
 import 'package:reminder_app/Constants/enums.dart';
 import 'package:reminder_app/Constants/theme_data.dart';
+import 'package:reminder_app/Countdown-Timer/count_down_timer.dart';
 import 'package:reminder_app/Models/data_menu_info.dart';
 import 'package:reminder_app/Models/menu_info.dart';
+import 'package:reminder_app/Screens/alarm_screen.dart';
+import 'package:reminder_app/Screens/clock_screen.dart';
+import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String pageRoute = "/HomeScreen";
@@ -18,31 +19,10 @@ class HomeScreen extends StatefulWidget {
   }
 }
 
-///for Documentation to Read Date time formats
-///Visit below site:
-///https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
-
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    ///This DateTime widget constructs a [DateTime] instance
-    ///With current date and time in the local time zone.
-    DateTime dateTimeNow = DateTime.now();
-
-    ///Time format for example like
-    ///DateFormat.jm() -------> 5:08 PM <-------
-    var formattedTime = DateFormat.jm().format(dateTimeNow);
-
-    ///Date format like
-    ///Wed, 24/08/2022
-    var formattedDate = DateFormat("EEE, dd/MM/yyyy").format(dateTimeNow);
-    var timeZoneString = dateTimeNow.timeZoneOffset.toString().split(".").first;
-    var offSetSign = "";
-    if (!timeZoneString.startsWith("-")) offSetSign = "+";
-    debugPrint(timeZoneString.toString());
-
     return Scaffold(
-      backgroundColor: const Color(0XFF2D2F41),
       body: Row(
         children: [
           Column(
@@ -54,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           ///Vertical Divider
           const VerticalDivider(
-            color: Colors.white54,
+            color: Colors.white,
             width: 1,
           ),
 
@@ -62,115 +42,27 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Consumer<MenuInfo>(
               builder: ((context, value, child) {
-                if (value.menuType != MenuType.clock) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'This feature will be uploaded soon'.toUpperCase(),
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.salsa(
-                          textStyle: TextStyle(
-                            fontSize: 25.0,
-                            color: Colors.white70,
-                          ),
-                        ),
+                if (value.menuType == MenuType.clock) {
+                  return ClockScreen();
+                } else if (value.menuType == MenuType.alarm) {
+                  return AlarmScreen();
+                } else if (value.menuType == MenuType.timer) {
+                  return CountDownTimerScreen();
+                } else if (value.menuType == MenuType.stopwatch) {
+                  return StopWatchScreen();
+                } else {
+                  return Center(
+                    child: Text(
+                      "This Feature will be added Soon",
+                      style: TextStyle(
+                        fontSize: 20.5,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontStyle: FontStyle.italic,
                       ),
-                    ],
+                    ),
                   );
                 }
-                return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: const Text(
-                          "Clock",
-                          style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 2,
-                        fit: FlexFit.tight,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ///Format Time
-                            ///DateTime.now();
-                            Text(
-                              formattedTime,
-                              style: const TextStyle(
-                                fontSize: 45,
-                                color: Colors.white,
-                              ),
-                            ),
-
-                            ///Format Date
-                            Text(
-                              formattedDate,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.white60,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      ///clock view
-                      Flexible(
-                        flex: 4,
-                        fit: FlexFit.tight,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: ClockView(
-                              size: MediaQuery.of(context).size.height / 4),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 2,
-                        fit: FlexFit.tight,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Time zone",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.language,
-                                  color: Colors.white,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  "utc".toUpperCase() +
-                                      offSetSign +
-                                      timeZoneString,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
               }),
             ),
           ),
@@ -216,3 +108,112 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+  // return Container(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       const Flexible(
+                //         flex: 1,
+                //         fit: FlexFit.tight,
+                //         child: const Text(
+                //           "Clock",
+                //           style: TextStyle(
+                //               fontSize: 24,
+                //               color: Colors.white,
+                //               fontWeight: FontWeight.bold),
+                //         ),
+                //       ),
+                //       Flexible(
+                //         flex: 2,
+                //         fit: FlexFit.tight,
+                //         child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             ///Format Time
+                //             ///DateTime.now();
+                //             Text(
+                //               formattedTime,
+                //               style: const TextStyle(
+                //                 fontSize: 45,
+                //                 color: Colors.white,
+                //               ),
+                //             ),
+
+                //             ///Format Date
+                //             Text(
+                //               formattedDate,
+                //               style: const TextStyle(
+                //                 fontSize: 20,
+                //                 color: Colors.white60,
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+
+                //       ///clock view
+                //       Flexible(
+                //         flex: 4,
+                //         fit: FlexFit.tight,
+                //         child: Align(
+                //           alignment: Alignment.center,
+                //           child: ClockView(
+                //               size: MediaQuery.of(context).size.height / 4),
+                //         ),
+                //       ),
+                //       Flexible(
+                //         flex: 2,
+                //         fit: FlexFit.tight,
+                //         child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             const Text(
+                //               "Time zone",
+                //               style: TextStyle(
+                //                 fontSize: 20,
+                //                 color: Colors.white,
+                //               ),
+                //             ),
+                //             Row(
+                //               children: [
+                //                 const Icon(
+                //                   Icons.language,
+                //                   color: Colors.white,
+                //                 ),
+                //                 const SizedBox(width: 10),
+                //                 Text(
+                //                   "utc".toUpperCase() +
+                //                       offSetSign +
+                //                       timeZoneString,
+                //                   style: const TextStyle(
+                //                     fontSize: 20,
+                //                     color: Colors.white,
+                //                   ),
+                //                 ),
+                //               ],
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // );
+
+
+                    // ///This DateTime widget constructs a [DateTime] instance
+    // ///With current date and time in the local time zone.
+    // DateTime dateTimeNow = DateTime.now();
+
+    // ///Time format for example like
+    // ///DateFormat.jm() -------> 5:08 PM <-------
+    // var formattedTime = DateFormat.jm().format(dateTimeNow);
+
+    // ///Date format like
+    // ///Wed, 24/08/2022
+    // var formattedDate = DateFormat("EEE, dd/MM/yyyy").format(dateTimeNow);
+    // var timeZoneString = dateTimeNow.timeZoneOffset.toString().split(".").first;
+    // var offSetSign = "";
+    // if (!timeZoneString.startsWith("-")) offSetSign = "+";
+    // debugPrint(timeZoneString.toString());

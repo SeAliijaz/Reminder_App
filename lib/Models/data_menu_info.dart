@@ -1,4 +1,6 @@
 import 'package:reminder_app/Constants/enums.dart';
+import 'package:reminder_app/Constants/theme_data.dart';
+import 'package:reminder_app/Models/alarm_info_model.dart';
 import 'package:reminder_app/Models/menu_info.dart';
 
 List<MenuInfo> menuItems = [
@@ -21,5 +23,22 @@ List<MenuInfo> menuItems = [
     MenuType.stopwatch,
     title: "Stopwatch",
     imageSource: "assets/stopwatch_icon.png",
+  ),
+];
+
+List<AlarmInfo> alarms = [
+  AlarmInfo(
+    DateTime.now().add(
+      Duration(hours: 1),
+    ),
+    gradientColors: GradientColors.sky,
+    description: "Office",
+  ),
+  AlarmInfo(
+    DateTime.now().add(
+      Duration(hours: 2),
+    ),
+    gradientColors: GradientColors.sunset,
+    description: "Sports",
   ),
 ];
