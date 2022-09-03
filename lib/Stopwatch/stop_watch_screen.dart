@@ -37,7 +37,8 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     digitMinutes = "00";
     digitHours = "00";
 
-    started = false;
+    ///Working for now
+    stop();
   }
 
   ///laps
@@ -80,6 +81,12 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text("Stopwatch timer"),
+        centerTitle: true,
+        elevation: 0.0,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -87,23 +94,13 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Center(
-                child: Text(
-                  "Stopwatch",
-                  style: TextStyle(
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
               const SizedBox(height: 20.0),
               Center(
                 child: Text(
                   "$digitHours:$digitMinutes:$digitSeconds",
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 70.0,
+                    fontSize: 50.0,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -182,7 +179,9 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                         "RESET".toUpperCase(),
                         style: const TextStyle(color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        reset();
+                      },
                     ),
                   ),
                 ],

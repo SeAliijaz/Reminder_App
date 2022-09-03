@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:reminder_app/Countdown-Timer/Widgets/button_widget.dart';
 
@@ -49,6 +48,12 @@ class _CountDownTimerScreenState extends State<CountDownTimerScreen> {
   Widget build(BuildContext context) {
     final Size s = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text("Countdown timer"),
+        centerTitle: true,
+        elevation: 0.0,
+      ),
       body: Row(
         children: [
           Expanded(

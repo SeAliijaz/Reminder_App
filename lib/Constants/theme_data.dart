@@ -5,7 +5,6 @@ class CustomColors {
   static Color dividerColor = Colors.white54;
   static Color pageBackgroundColor = const Color(0xFF2D2F41);
   static Color menuBackgroundColor = const Color(0xFF242634);
-
   static Color clockBG = const Color(0xFF444974);
   static Color clockOutline = const Color(0xFFEAECFF);
   static Color? secHandColor = Colors.orange[300];
@@ -18,7 +17,6 @@ class CustomColors {
 class GradientColors {
   final List<Color> colors;
   GradientColors(this.colors);
-
   static List<Color> sky = [const Color(0xFF6448FE), const Color(0xFF5FC6FF)];
   static List<Color> sunset = [
     const Color(0xFFFE6197),

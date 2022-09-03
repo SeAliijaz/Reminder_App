@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:reminder_app/Constants/theme_data.dart';
 import 'package:reminder_app/Models/data_menu_info.dart';
 
@@ -54,7 +55,7 @@ class AlarmScreen extends StatelessWidget {
                             ),
                             SizedBox(width: 5),
                             Text(
-                              "Office",
+                              alarm.description!,
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -69,9 +70,9 @@ class AlarmScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "mon-fri",
+                      "Mon-Fri",
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 15,
                         color: Colors.white,
                       ),
                     ),
@@ -79,15 +80,16 @@ class AlarmScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "07:00 AM",
+                          DateFormat("hh:mm aa").format(alarm.alarmDateTime!),
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 15,
                             color: Colors.white,
                           ),
                         ),
                         Icon(
                           Icons.arrow_downward,
-                          size: 12,
+                          size: 15,
+                          color: Colors.white,
                         ),
                       ],
                     ),
