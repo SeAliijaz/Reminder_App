@@ -1,8 +1,8 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
-import 'package:reminder_app/Services/firebase_services.dart';
-import '../../../Constants/constants.dart';
+import 'package:reminder_app/Screens/Module_Screens/Stopwatch/Notepad/Services/firebase_services.dart';
+import '../../../../../../Constants/constants.dart';
 import '../../Widgets/custom_progress_indicator.dart';
 import '../Add_Data_Screen/add_data_screen.dart';
 import '../Edit_Data_Screen/edit_data_screen.dart';

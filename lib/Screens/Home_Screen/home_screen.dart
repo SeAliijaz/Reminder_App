@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:reminder_app/Constants/enums.dart';
-import 'package:reminder_app/Constants/theme_data.dart';
-import 'package:reminder_app/Countdown-Timer/count_down_timer.dart';
+import 'package:reminder_app/Enums/enums.dart';
+import 'package:reminder_app/Theme_Data/theme_data.dart';
+import 'package:reminder_app/Screens/Module_Screens/Stopwatch/Countdown-Timer/count_down_timer.dart';
 import 'package:reminder_app/Models/data_menu_info.dart';
-import 'package:reminder_app/Models/menu_info.dart';
-import 'package:reminder_app/Screens/alarm_screen.dart';
-import 'package:reminder_app/Screens/clock_screen.dart';
-import 'package:reminder_app/Stopwatch/stop_watch_screen.dart';
+import 'package:reminder_app/Models/menu_info_provider.dart';
+import 'package:reminder_app/Screens/Reminder-Screen/alarm_screen.dart';
+import 'package:reminder_app/Screens/Reminder-Screen/clock_screen.dart';
+import 'package:reminder_app/Screens/Module_Screens/Stopwatch/Stopwatch_Screen/stop_watch_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String pageRoute = "/HomeScreen";
@@ -43,15 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Consumer<MenuInfo>(
               builder: ((context, value, child) {
                 if (value.menuType == MenuType.clock) {
-                  return ClockScreen();
+                  return const ClockScreen();
                 } else if (value.menuType == MenuType.alarm) {
                   return AlarmScreen();
                 } else if (value.menuType == MenuType.timer) {
-                  return CountDownTimerScreen();
+                  return const CountDownTimerScreen();
                 } else if (value.menuType == MenuType.stopwatch) {
-                  return StopWatchScreen();
+                  return const StopWatchScreen();
                 } else {
-                  return Center(
+                  return const Center(
                     child: Text(
                       "This Feature will be added Soon",
                       style: TextStyle(

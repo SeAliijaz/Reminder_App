@@ -1,7 +1,7 @@
-import 'package:reminder_app/Constants/enums.dart';
-import 'package:reminder_app/Constants/theme_data.dart';
+import 'package:reminder_app/Enums/enums.dart';
+import 'package:reminder_app/Theme_Data/theme_data.dart';
 import 'package:reminder_app/Models/alarm_info_model.dart';
-import 'package:reminder_app/Models/menu_info.dart';
+import 'package:reminder_app/Models/menu_info_provider.dart';
 
 List<MenuInfo> menuItems = [
   MenuInfo(

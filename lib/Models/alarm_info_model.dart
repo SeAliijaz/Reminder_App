@@ -6,6 +6,8 @@ class AlarmInfo {
   bool? isActive;
   List<Color>? gradientColors;
 
+  String? title;
+
   AlarmInfo(
     this.alarmDateTime, {
     this.description,

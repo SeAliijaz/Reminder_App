@@ -1,16 +1,34 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:reminder_app/Constants/enums.dart';
-import 'package:reminder_app/Models/menu_info.dart';
-import 'package:reminder_app/Reminder/services.dart';
-import 'package:reminder_app/Screens/home_screen.dart';
+import 'package:reminder_app/Enums/enums.dart';
+import 'package:reminder_app/Models/menu_info_provider.dart';
+import 'package:reminder_app/Screens/Home_Screen/home_screen.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationService notificationService = NotificationService();
-  await notificationService.initReminder();
+
+  var initializationSettingsAndroid =
+      AndroidInitializationSettings('ic_launcher');
+  var initializationSettingsIOS = IOSInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+      onDidReceiveLocalNotification:
+          (int id, String? title, String? body, String? payload) async {});
+  var initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: (String? payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+  });
   runApp(MyApp());
 }
 

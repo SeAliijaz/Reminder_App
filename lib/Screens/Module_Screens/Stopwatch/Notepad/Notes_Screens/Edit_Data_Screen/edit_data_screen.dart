@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:reminder_app/Services/firebase_services.dart';
-import '../../../Constants/constants.dart';
+import 'package:reminder_app/Screens/Module_Screens/Stopwatch/Notepad/Services/firebase_services.dart';
+import '../../../../../../Constants/constants.dart';
 import '../../Widgets/custom_button.dart';
 
 class EditDataScreen extends StatefulWidget {

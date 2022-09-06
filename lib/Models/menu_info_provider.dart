@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:reminder_app/Constants/enums.dart';
+import 'package:reminder_app/Enums/enums.dart';
 
 class MenuInfo extends ChangeNotifier {
   MenuType? menuType;
@@ -16,7 +16,6 @@ class MenuInfo extends ChangeNotifier {
     menuType = menuInfo.menuType;
     title = menuInfo.title;
     imageSource = menuInfo.imageSource;
-
     notifyListeners();
   }
 }

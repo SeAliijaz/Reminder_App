@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:reminder_app/Constants/constants.dart';
-import 'package:reminder_app/Services/firebase_services.dart';
+import 'package:reminder_app/Screens/Module_Screens/Stopwatch/Notepad/Services/firebase_services.dart';
 
 import '../../Widgets/custom_button.dart';
 
