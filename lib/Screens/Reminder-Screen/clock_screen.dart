@@ -12,21 +12,15 @@ class ClockScreen extends StatefulWidget {
 class _ClockScreenState extends State<ClockScreen> {
   @override
   Widget build(BuildContext context) {
-    ///This DateTime widget constructs a [DateTime] instance
-    ///With current date and time in the local time zone.
-    DateTime dateTimeNow = DateTime.now();
+    ///formattedTime
+    var formattedTime = DateFormat.jm().format(DateTime.now());
 
-    ///Time format for example like
-    ///DateFormat.jm() -------> 5:08 PM <-------
-    var formattedTime = DateFormat.jm().format(dateTimeNow);
-
-    ///Date format like
-    ///Wed, 24/08/2022
-    var formattedDate = DateFormat("EEE, dd/MM/yyyy").format(dateTimeNow);
-    var timeZoneString = dateTimeNow.timeZoneOffset.toString().split(".").first;
-    var offSetSign = "";
-    if (!timeZoneString.startsWith("-")) offSetSign = "+";
-    debugPrint(timeZoneString.toString());
+    ///formattedDate
+    var formattedDate = DateFormat('EEE, d/MM/yyyy').format(DateTime.now());
+    var timezoneString =
+        DateTime.now().timeZoneOffset.toString().split('.').first;
+    var offsetSign = '';
+    if (!timezoneString.startsWith('-')) offsetSign = '+';
 
     ///Creates a visual scaffold for Material Design widgets.
     return Scaffold(
@@ -53,11 +47,10 @@ class _ClockScreenState extends State<ClockScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ///Format Time
-                  ///DateTime.now();
                   Text(
                     formattedTime,
                     style: const TextStyle(
-                      fontSize: 45,
+                      fontSize: 50,
                       color: Colors.white,
                     ),
                   ),
@@ -80,7 +73,9 @@ class _ClockScreenState extends State<ClockScreen> {
               fit: FlexFit.tight,
               child: Align(
                 alignment: Alignment.center,
-                child: ClockView(size: MediaQuery.of(context).size.height / 4),
+                child: ClockView(
+                  size: MediaQuery.of(context).size.height / 4,
+                ),
               ),
             ),
             Flexible(
@@ -104,7 +99,7 @@ class _ClockScreenState extends State<ClockScreen> {
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        "utc".toUpperCase() + offSetSign + timeZoneString,
+                        "utc".toUpperCase() + offsetSign + timezoneString,
                         style: const TextStyle(
                           fontSize: 20,
                           color: Colors.white,

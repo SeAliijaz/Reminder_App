@@ -29,6 +29,7 @@ Future<void> main() async {
       debugPrint('notification payload: ' + payload);
     }
   });
+
   runApp(MyApp());
 }
 
