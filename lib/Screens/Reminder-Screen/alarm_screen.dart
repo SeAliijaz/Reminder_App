@@ -2,10 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
-import 'package:reminder_app/Theme_Data/theme_data.dart';
-import 'package:reminder_app/Models/alarm_info_model.dart';
 import 'package:reminder_app/Models/data_menu_info.dart';
-import 'package:timezone/timezone.dart' as tz;
+import 'package:reminder_app/Theme_Data/theme_data.dart';
 
 import '../../main.dart';
 
@@ -21,7 +19,10 @@ class AlarmScreen extends StatelessWidget {
           const Text(
             "Clock",
             style: TextStyle(
-                fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+              fontSize: 24,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           Expanded(
               child: ListView(
@@ -122,7 +123,9 @@ class AlarmScreen extends StatelessWidget {
                             child: MaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25)),
-                              onPressed: (() {}),
+                              onPressed: (() {
+                                scheduleAlarm();
+                              }),
                               child: Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -163,21 +166,33 @@ class AlarmScreen extends StatelessWidget {
     );
   }
 
-  void scheduleAlarm() {
+  void scheduleAlarm() async {
     var scheduledNotificationDateTime =
-        DateTime.now().add(Duration(seconds: 10));
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        DateTime.now().add(const Duration(seconds: 10));
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'alarm_notif',
       'alarm_notif',
       icon: 'ic_launcher',
       sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
-      largeIcon: DrawableResourceAndroidBitmap(' ic_launcher '),
-    ); // AndroidNotificationDetails
-  }
+      largeIcon: DrawableResourceAndroidBitmap('ic_launcher'),
+    );
 
-  var iOSPlatformChannelSpecifics = IOSNotificationDetails(
+    var iOSPlatformChannelSpecifics = const IOSNotificationDetails(
       sound: ' a_long_cold_sting.wav ',
       presentAlert: true,
       presentBadge: true,
-      presentSound: true);
+      presentSound: true,
+    );
+
+    var platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics);
+    // ignore: deprecated_member_use
+    await flutterLocalNotificationsPlugin.schedule(
+        0,
+        "Office",
+        "Good Morning! Time for office",
+        scheduledNotificationDateTime,
+        platformChannelSpecifics);
+  }
 }
