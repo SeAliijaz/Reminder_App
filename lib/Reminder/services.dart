@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:reminder_app/Constants/constants.dart';
-import 'package:reminder_app/Reminder/details_screen.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+
+import 'details_screen.dart';
 
 class NotificationService {
   // Singleton pattern
@@ -30,6 +31,7 @@ class NotificationService {
     enableVibration: true,
     priority: Priority.high,
     importance: Importance.high,
+    // sound: RawResourceAndroidNotificationSound(""),
   );
 
   // static final IOSNotificationDetails _iOSNotificationDetails =

@@ -15,31 +15,23 @@ class ActionButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        ElevatedButton(
-          onPressed: onCancel,
-          style: ElevatedButton.styleFrom(
-            elevation: 15,
-            shadowColor: Colors.black45,
-            padding: const EdgeInsets.all(0.0),
-            primary: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-          child: Ink(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xff434343),
-                  Color(0xff0044000),
-                ],
+        Expanded(
+          child: ElevatedButton(
+            onPressed: onCancel,
+            style: ElevatedButton.styleFrom(
+              elevation: 15,
+              shadowColor: Colors.black45,
+              padding: const EdgeInsets.all(0.0),
+              backgroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             child: Container(
+              height: 60,
               child: Center(
                 child: Text(
-                  'CANCEL',
+                  'CANCEL'.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
@@ -50,31 +42,24 @@ class ActionButtons extends StatelessWidget {
             ),
           ),
         ),
-        ElevatedButton(
-          onPressed: onCreate,
-          style: ElevatedButton.styleFrom(
-            elevation: 15,
-            shadowColor: Colors.black45,
-            padding: const EdgeInsets.all(0.0),
-            primary: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-          child: Ink(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xff434343),
-                  Color(0xff000000),
-                ],
+        SizedBox(width: 10),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: onCreate,
+            style: ElevatedButton.styleFrom(
+              elevation: 15,
+              shadowColor: Colors.black45,
+              padding: const EdgeInsets.all(0.0),
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             child: Container(
+              height: 60,
               child: Center(
                 child: Text(
-                  'CREATE',
+                  'CREATE'.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(

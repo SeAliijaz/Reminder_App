@@ -15,10 +15,13 @@ class Header extends StatelessWidget {
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w600,
-              color: Colors.black87,
+              color: Colors.black,
             ),
           ),
-          Icon(Icons.notifications_active),
+          Icon(
+            Icons.notifications_active,
+            color: Colors.black,
+          ),
         ],
       ),
     );
