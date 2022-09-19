@@ -31,7 +31,7 @@ class NotificationService {
     enableVibration: true,
     priority: Priority.high,
     importance: Importance.high,
-    // sound: RawResourceAndroidNotificationSound(""),
+    sound: RawResourceAndroidNotificationSound("a_long_cold_sting"),
   );
 
   // static final IOSNotificationDetails _iOSNotificationDetails =
@@ -78,6 +78,13 @@ class NotificationService {
   //         sound: true,
   //       );
   // }
+
+  Future<void> requestAndroidPermissions() async {
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission();
+  }
 
   Future<void> showNotification(
       int id, String title, String body, String payload) async {

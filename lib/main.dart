@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Reminder app',
-            // theme: ThemeData(
-            //   scaffoldBackgroundColor: Color(0xff272171),
-            // ),
+            theme: ThemeData(
+              scaffoldBackgroundColor: Color(0xff272171),
+            ),
 
             ///HOME
             home: HomeScreen(),
