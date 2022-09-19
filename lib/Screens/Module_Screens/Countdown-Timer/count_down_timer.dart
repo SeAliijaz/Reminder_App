@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:reminder_app/Screens/Module_Screens/Stopwatch/Countdown-Timer/Widgets/button_widget.dart';
+import 'package:reminder_app/Screens/Module_Screens/Countdown-Timer/Widgets/button_widget.dart';
 
 class CountDownTimerScreen extends StatefulWidget {
   const CountDownTimerScreen({Key? key}) : super(key: key);
