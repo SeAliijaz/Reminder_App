@@ -48,6 +48,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
     final eventDate = data["eventDate"].toString();
     final eventTime = data["eventTime"].toString();
     return Card(
+      elevation: 5,
+      shadowColor: Colors.grey.withOpacity(0.2),
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

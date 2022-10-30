@@ -148,92 +148,97 @@ class _ReminderScreenState extends State<ReminderScreen> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) => const DetailsScreen(
-                          payload: null,
-                        )),
+                    builder: (context) => const DetailsScreen(payload: null)),
               );
             },
             icon: const Icon(
               Icons.library_books_rounded,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ],
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-          child: Container(
+        child: Container(
+          decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.9),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Header(),
-                    TextFormField(
-                      controller: _textEditingController,
-                      maxLength: maxTitleLength,
-                      decoration: const InputDecoration(
-                        hintText: "Add event",
-                      ),
+            boxShadow: [
+              BoxShadow(
+                spreadRadius: 5,
+                blurRadius: 5,
+                color: Colors.grey.withOpacity(0.4),
+                offset: Offset(0, 0),
+              )
+            ],
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Header(),
+                  TextFormField(
+                    controller: _textEditingController,
+                    maxLength: maxTitleLength,
+                    decoration: const InputDecoration(
+                      hintText: "Add event",
                     ),
-                    const SizedBox(height: 20.0),
-                    CupertinoSlidingSegmentedControl<int>(
-                      onValueChanged: (value) {
-                        if (value == 1) eventDate = null;
-                        setState(() => segmentedControlGroupValue = value!);
-                      },
-                      groupValue: segmentedControlGroupValue,
-                      padding: const EdgeInsets.all(4.0),
-                      children: <int, Widget>{
-                        0: const Text('One time'),
-                        1: const Text('Daily'),
-                        2: const Text('Weekly')
-                      },
-                    ),
-                    const SizedBox(height: 24.0),
-                    const Text('Date & Time'),
-                    const SizedBox(height: 12.0),
-                    GestureDetector(
-                      onTap: selectEventDate,
-                      child: DateField(eventDate: eventDate),
-                    ),
-                    const SizedBox(height: 12.0),
-                    GestureDetector(
-                      onTap: () async {
-                        eventTime = await showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay(
-                            hour: currentTime.hour,
-                            minute: currentTime.minute + 1,
-                          ),
-                        );
-                        setState(() {});
-                      },
-                      child: TimeField(eventTime: eventTime),
-                    ),
-                    const SizedBox(height: 20.0),
-                    ActionButtons(
-                      onCreate: onCreate,
-                      onCancel: resetForm,
-                    ),
-                    const SizedBox(height: 20.0),
-                    GestureDetector(
-                      onTap: () async {
-                        await cancelAllNotifications();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('All notfications cancelled'),
-                          ),
-                        );
-                      },
-                      child: _buildCancelAllButton(),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  CupertinoSlidingSegmentedControl<int>(
+                    onValueChanged: (value) {
+                      if (value == 1) eventDate = null;
+                      setState(() => segmentedControlGroupValue = value!);
+                    },
+                    groupValue: segmentedControlGroupValue,
+                    padding: const EdgeInsets.all(4.0),
+                    children: <int, Widget>{
+                      0: const Text('One time'),
+                      1: const Text('Daily'),
+                      2: const Text('Weekly')
+                    },
+                  ),
+                  const SizedBox(height: 24.0),
+                  const Text('Date & Time'),
+                  const SizedBox(height: 12.0),
+                  GestureDetector(
+                    onTap: selectEventDate,
+                    child: DateField(eventDate: eventDate),
+                  ),
+                  const SizedBox(height: 12.0),
+                  GestureDetector(
+                    onTap: () async {
+                      eventTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay(
+                          hour: currentTime.hour,
+                          minute: currentTime.minute + 1,
+                        ),
+                      );
+                      setState(() {});
+                    },
+                    child: TimeField(eventTime: eventTime),
+                  ),
+                  const SizedBox(height: 20.0),
+                  ActionButtons(
+                    onCreate: onCreate,
+                    onCancel: resetForm,
+                  ),
+                  const SizedBox(height: 20.0),
+                  GestureDetector(
+                    onTap: () async {
+                      await cancelAllNotifications();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('All notfications cancelled'),
+                        ),
+                      );
+                    },
+                    child: _buildCancelAllButton(),
+                  ),
+                ],
               ),
             ),
           ),
